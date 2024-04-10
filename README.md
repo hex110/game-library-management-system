@@ -10,7 +10,7 @@ Structura proiectului:
 Clasele folosite sunt:
 Joc, JocMagazin (mostenit din clasa Joc), Librarie, Magazin, Cont
 
-![Poza cu terminalul](TerminalPhoto.png "Poza cu terminalul")
+![Poza cu terminalul](assets/TerminalPhoto.png "Poza cu terminalul")
 
 Functionalitati:  
 Detalii cont - Afiseaza numele, suma de bani, si numarul de jocuri detinute  

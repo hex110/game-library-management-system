@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-#include "cont.h"
+#include "clase/cont.h"
 
 enum OptiuniMeniu {
     OPT_DetaliiCont = 1,
