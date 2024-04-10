@@ -1,6 +1,18 @@
 #include <bits/stdc++.h>
 #include "cont.h"
 
+enum OptiuniMeniu {
+    OPT_DetaliiCont = 1,
+    OPT_SchimbaNume,
+    OPT_AdaugaSuma,
+    OPT_AfiseazaJocuriMagazin,
+    OPT_AfiseazaJocuriLibrarie,
+    OPT_DetaliiJoc,
+    OPT_CumparaJoc,
+    OPT_JoacaJoc,
+    OPT_Iesire
+};
+
 int main() {
     Joc joc1("GTA V", 271590, "14/04/2015", 40);
     Joc joc2("Rocket League", 252950, "07/07/2015", 4000);
@@ -51,39 +63,39 @@ int main() {
             continue;
         }
         switch (optiune) {
-            case 1:
+            case OPT_DetaliiCont:
                 cont.detaliiCont();
                 std::cout<<"\n\n";
                 continue;
-            case 2:
+            case OPT_SchimbaNume:
                 cont.schimbaNume();
                 std::cout<<"\n\n";
                 continue;
-            case 3:
+            case OPT_AdaugaSuma:
                 cont.adaugaSuma();
                 std::cout<<"\n\n";
                 continue;
-            case 4:
+            case OPT_AfiseazaJocuriMagazin:
                 cont.afiseazaJocuriMagazin();
                 std::cout<<"\n\n";
                 continue;
-            case 5:
+            case OPT_AfiseazaJocuriLibrarie:
                 cont.afiseazaJocuriLibrarie();
                 std::cout<<"\n\n";
                 continue;
-            case 6:
+            case OPT_DetaliiJoc:
                 cont.detaliiJoc();
                 std::cout<<"\n\n";
                 continue;
-            case 7:
+            case OPT_CumparaJoc:
                 cont.cumparaJoc();
                 std::cout<<"\n\n";
                 continue;
-            case 8:
+            case OPT_JoacaJoc:
                 cont.joacaJoc();
                 std::cout<<"\n\n";
                 continue;
-            case 9:
+            case OPT_Iesire:
                 std::cout<<"Va multumesc pentru timpul acordat\n";
                 //timer de 2 secunde
                 std::this_thread::sleep_for(std::chrono::seconds(2));
