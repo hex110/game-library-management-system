@@ -2,39 +2,35 @@
 #define JOC_H
 
 #include <bits/stdc++.h>
-using namespace std;
 
 class Joc{
 private:
     int timpJucat;
 protected:
-    string nume;
+    std::string nume;
     int id;
-    string dataLansarii;
+    std::string dataLansarii;
 
-    //metoda ce afiseaza timpul jucat sub forma de string formatat frumos
-    string timpJucatCaString() const {
-        string timp;
+    //metoda ce afiseaza timpul jucat sub forma de std::string formatat frumos
+    std::string timpJucatCaString() const {
+        std::string timp;
         if (timpJucat < 60) { //sub 60 minute
-            timp = to_string(timpJucat) + " de minute";
+            timp = std::to_string(timpJucat) + " de minute";
         }
         else { //peste 60 minute
             int ore = timpJucat / 60;
             int minute = timpJucat % 60;
-            timp = to_string(ore) + " ore";
+            timp = std::to_string(ore) + " ore";
             if (minute > 0) {
-                timp += " si " + to_string(minute) + " de minute";
+                timp += " si " + std::to_string(minute) + " de minute";
             }
         }
         return timp;
     }
 public:
     //constructor
-    Joc(string nume, int id, string dataLansarii, int timpJucat) : nume{nume}, id{id},
+    Joc(std::string nume, int id, std::string dataLansarii, int timpJucat) : nume{nume}, id{id},
     dataLansarii{dataLansarii}, timpJucat{timpJucat} {};
-
-    //nu avem nevoie sa dam overwrite la destructor pentru ca nu folosim char cu pointer
-    //~Joc() {}
 
     //copy constructor
     Joc(const Joc& other) {
@@ -55,8 +51,31 @@ public:
         return *this;
     }
 
+    //operator <<
+    friend std::ostream& operator<<(std::ostream& out, const Joc& joc) {
+        out<<"Nume:"<<joc.nume<<'\n';
+        out<<"ID: "<<joc.id<<'\n';
+        out<<"Data lansarii: "<<joc.dataLansarii<<'\n';
+        out<<"Timp jucat: "<<joc.timpJucat<<'\n';
+        out<<"Detalii:"<<joc.detaliiJoc()<<'\n';
+        return out;
+    }
+
+    //operator >>
+    friend std::istream& operator>>(std::istream& in, Joc& joc) {
+        std::cout<<"Nume joc: ";
+        in >> joc.nume;
+        std::cout<<"ID joc: ";
+        in >> joc.id;
+        std::cout<<"Data lansarii: ";
+        in >> joc.dataLansarii;
+        std::cout<<"Timp jucat: ";
+        in >> joc.timpJucat;
+        return in;
+    }
+
     //getters
-    string getNume() const {
+    std::string getNume() const {
         return nume;
     }
 
@@ -64,7 +83,7 @@ public:
         return id;
     }
 
-    string getDataLansarii() const {
+    std::string getDataLansarii() const {
         return dataLansarii;
     }
 
@@ -73,7 +92,7 @@ public:
     }
 
     //setters
-    void setNume(const string numeNou) {
+    void setNume(const std::string numeNou) {
         this->nume = numeNou;
     }
 
@@ -81,7 +100,7 @@ public:
         this->id = idNou;
     }
 
-    void setDataLansarii(const string dataLansariiNou) {
+    void setDataLansarii(const std::string dataLansariiNou) {
         this->dataLansarii = dataLansariiNou;
     }
 
@@ -94,20 +113,20 @@ public:
     //metoda asta deschide jocul respectiv pe steam
     //daca cine ruleaza nu are jocul pe steam, deschide store page-ul
     void deschideJoc() const {
-        string command = "start steam://run/" + to_string(id);
+        std::string command = "start steam://run/" + std::to_string(id);
         system(command.c_str());
     }
 
     //metoda care afiseaza cate minute sau ore ai jucat un joc
-    string oreJucate() const {
+    std::string oreJucate() const {
         return timpJucatCaString();
     }
 
-    string detaliiJoc() const {
-        string s = "Jocul " + nume;
-        string s1 = " are un gameplay captivant si este apreciat de oricine.";
-        string s2 = " este apreciat de critici, dar jucatorii nu sunt de acord.";
-        string s3 = " nu este apreciat de nimeni.";
+    std::string detaliiJoc() const {
+        std::string s = "Jocul " + nume;
+        std::string s1 = " are un gameplay captivant si este apreciat de oricine.";
+        std::string s2 = " este apreciat de critici, dar jucatorii nu sunt de acord.";
+        std::string s3 = " nu este apreciat de nimeni.";
         //int randomIndex = rand() % 3;
         int sumaCifre = 0;
         for(int i=0; i<nume.size(); i++) {
@@ -137,7 +156,7 @@ private:
 
 public:
     //cosntructor
-    JocMagazin(string nume, int id, string dataLansarii, double pret) :
+    JocMagazin(std::string nume, int id, std::string dataLansarii, double pret) :
     Joc(nume, id, dataLansarii, 0), pret{pret} {};
 
     //copy constructor
@@ -167,12 +186,13 @@ public:
 
 int test1() {
     Joc geometryDash("Geometry Dash", 322170, "22 decembrie 2014", 100);
-    cout << geometryDash.getNume() << endl;
-    cout << geometryDash.getId() << endl;
-    cout << geometryDash.getDataLansarii() << endl;
-    cout << geometryDash.getTimpJucat() << endl;
-    cout << geometryDash.oreJucate() << endl;
-    cout << geometryDash.detaliiJoc() << endl;
+    std::cout<<geometryDash.getNume()<<'\n';
+    std::cout<<geometryDash.getId()<<'\n';
+    std::cout<<geometryDash.getDataLansarii()<<'\n';
+    std::cout<<geometryDash.getTimpJucat()<<'\n';
+    std::cout<<geometryDash.oreJucate()<<'\n';
+    std::cout<<geometryDash.detaliiJoc()<<'\n';
+    std::cout<<geometryDash<<'\n';
 
     //las metoda asta comentata ca sa nu deschida jocul, dar daca se scoate commentul
     //se observa ca functioneaza si chiar se deschide jocul

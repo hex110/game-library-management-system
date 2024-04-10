@@ -1,10 +1,9 @@
 #include <bits/stdc++.h>
 #include "joc.h"
-using namespace std;
 
 class Librarie{ 
 private:
-    vector<Joc> jocuri;
+    std::vector<Joc> jocuri;
     int numarJocuri;
 
     //sorteaza jocuri dupa id, metoda care isi ia call mereu cand se schimba jocurile din librarie
@@ -15,7 +14,7 @@ private:
             t=0;
             for (j=0; j < n-i-1; j++) {
                 if (jocuri[j].getId() > jocuri[j+1].getId()) {
-                    swap(jocuri[j], jocuri[j+1]);
+                    std::swap(jocuri[j], jocuri[j+1]);
                     t=1;
                 }
             }
@@ -26,7 +25,7 @@ private:
 
 public:
     //constructor
-    Librarie(const vector<Joc>& jocuri) : jocuri{jocuri}, numarJocuri{jocuri.size()} {}
+    Librarie(const std::vector<Joc>& jocuri) : jocuri{jocuri}, numarJocuri{jocuri.size()} {}
 
     //copy constructor
     Librarie(const Librarie& other) : numarJocuri(other.numarJocuri), jocuri(other.jocuri) {}
@@ -40,18 +39,22 @@ public:
         return *this;
     }
 
+    //operator <<
+
+    //operator >>
+
     //getters
     int getNumarJocuri() const {
         return numarJocuri;
     }
 
-    vector<Joc> getJocuri() const {
+    std::vector<Joc> getJocuri() const {
         return jocuri;
     }
 
     //setter
     //nu avem pentru numar de jocuri pentru ca acela se schimba dinamic in setterul de jocuri
-    void setJocuri(const vector<Joc>& jocuriNou) {
+    void setJocuri(const std::vector<Joc>& jocuriNou) {
         jocuri = jocuriNou;
         numarJocuri = jocuri.size();
         sortareJocuri();
@@ -67,7 +70,7 @@ public:
     }
 
     //sterge un joc din librarie doar dupa nume
-    void stergeJoc(const string numeJoc) {
+    void stergeJoc(const std::string numeJoc) {
         for (int i=0; i<numarJocuri; i++) {
             if (jocuri[i].getNume() == numeJoc) {
                 for (int j=i; j<numarJocuri-1; j++) {
@@ -83,12 +86,12 @@ public:
     //afiseaza toate jocurile in ordinea id-ului
     void afiseazaJocuriSumar() {
         if (numarJocuri == 0) {
-            cout<<"Nu ai nici un joc in librarie\n";
+            std::cout<<"Nu ai nici un joc in librarie\n";
             return;
         }
-        cout<<"Libraria ta de jocuri:\n";
+        std::cout<<"Libraria ta de jocuri:\n";
         for (int i=0; i<numarJocuri; i++) {
-            cout<<jocuri[i].getNume()<<" | Data lansarii: "<<jocuri[i].getDataLansarii()<<
+            std::cout<<jocuri[i].getNume()<<" | Data lansarii: "<<jocuri[i].getDataLansarii()<<
             " | Timp jucat: "<<jocuri[i].oreJucate()<<" | ID: "<<
             jocuri[i].getId()<<'\n';
         }
@@ -96,7 +99,7 @@ public:
 
     //schimba detaliile unui joc
     //se putea face si dupa id, dar m-am gandit ca dupa nume e mai usor de folosit
-    void actualizeazaDetaliiJoc(const string numeJoc, const int idNou, const string dataLansariiNou, const int timpJucatNou) {
+    void actualizeazaDetaliiJoc(const std::string numeJoc, const int idNou, const std::string dataLansariiNou, const int timpJucatNou) {
         for (int i=0; i<numarJocuri; i++) {
             if (jocuri[i].getNume() == numeJoc) {
                 jocuri[i].setDataLansarii(dataLansariiNou);
@@ -108,7 +111,7 @@ public:
         sortareJocuri();
     }
 
-    Joc getJocByName(string numeJoc) {
+    Joc getJocByName(std::string numeJoc) {
         //transform numeJoc into all lowercase and remove spaces or special characters
         for (int i=0; i<numarJocuri; i++) {
             if (jocuri[i].getNume() == numeJoc) {
@@ -117,7 +120,7 @@ public:
         }
     }
 
-    bool existaJoc(string numeJoc) {
+    bool existaJoc(std::string numeJoc) {
         for (int i=0; i<numarJocuri; i++) {
             if (jocuri[i].getNume() == numeJoc) {
                 return true;
@@ -130,7 +133,7 @@ public:
 
 int test2() {
     Librarie librarie({Joc("GTA V", 4, "17 septembrie 2013", 120), Joc("CS:GO", 3, "21 august 2012", 300)});
-    cout << librarie.getNumarJocuri() << endl;
+    std::cout<<librarie.getNumarJocuri()<<'\n';
     librarie.adaugaJoc(Joc("Valorant", 2, "2 iunie 2020", 50));
     librarie.stergeJoc("GTA V");
     librarie.afiseazaJocuriSumar();

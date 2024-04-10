@@ -1,12 +1,11 @@
 #include <bits/stdc++.h>
 #include "joc.h"
-using namespace std;
 
-//clasa la fel ca librarie, dar ce foloseste un vector de tip JocMagazin in loc de Joc
+//clasa la fel ca librarie, dar ce foloseste un std::vector de tip JocMagazin in loc de Joc
 class Magazin{
 private:
     int numarJocuri;
-    vector<JocMagazin> jocuriMagazin;
+    std::vector<JocMagazin> jocuriMagazin;
 
     void sortareJocuri() {
         int i, j, n = numarJocuri;
@@ -15,7 +14,7 @@ private:
             t=0;
             for (j=0; j < n-i-1; j++) {
                 if (jocuriMagazin[j].getId() > jocuriMagazin[j+1].getId()) {
-                    swap(jocuriMagazin[j], jocuriMagazin[j+1]);
+                    std::swap(jocuriMagazin[j], jocuriMagazin[j+1]);
                     t=1;
                 }
             }
@@ -26,7 +25,7 @@ private:
 
 public:
     //constructor
-    Magazin(const vector<JocMagazin>& jocuri) : jocuriMagazin{jocuri}, numarJocuri{jocuri.size()} {}
+    Magazin(const std::vector<JocMagazin>& jocuri) : jocuriMagazin{jocuri}, numarJocuri{jocuri.size()} {}
 
     //copy constructor
     Magazin(const Magazin& other) : numarJocuri(other.numarJocuri), jocuriMagazin(other.jocuriMagazin) {}
@@ -45,12 +44,12 @@ public:
         return numarJocuri;
     }
 
-    vector<JocMagazin> getJocuriMagazin() const {
+    std::vector<JocMagazin> getJocuriMagazin() const {
         return jocuriMagazin;
     }
 
     //setter
-    void setJocuriMagazin(const vector<JocMagazin>& jocuriNou) {
+    void setJocuriMagazin(const std::vector<JocMagazin>& jocuriNou) {
         jocuriMagazin = jocuriNou;
         numarJocuri = jocuriMagazin.size();
         sortareJocuri();
@@ -67,7 +66,7 @@ public:
     }
 
     //sterge un joc din librarie doar dupa nume
-    void stergeJoc(const string numeJoc) {
+    void stergeJoc(const std::string numeJoc) {
         for (int i=0; i<numarJocuri; i++) {
             if (jocuriMagazin[i].getNume() == numeJoc) {
                 for (int j=i; j<numarJocuri-1; j++) {
@@ -83,24 +82,24 @@ public:
     //afiseaza toate jocurile in ordinea id-ului
     void afiseazaJocuriSumar() {
         if (numarJocuri == 0) {
-            cout<<"Magazinul nu mai are jocuri de vandut\n";
+            std::cout<<"Magazinul nu mai are jocuri de vandut\n";
             return;
         }
-        cout<<"Jocuri disponibile in magazin:\n";
+        std::cout<<"Jocuri disponibile in magazin:\n";
         for (int i=0; i<numarJocuri; i++) {
             if (jocuriMagazin[i].getPret() > 0)
-                cout<<jocuriMagazin[i].getNume()<<" | Data lansarii: "<<jocuriMagazin[i].getDataLansarii()<<
+                std::cout<<jocuriMagazin[i].getNume()<<" | Data lansarii: "<<jocuriMagazin[i].getDataLansarii()<<
                 " | Pretul jocului: "<<jocuriMagazin[i].getPret()<<" euro | ID: "<<
                 jocuriMagazin[i].getId()<<'\n';
             else
-                cout<<jocuriMagazin[i].getNume()<<" | Data lansarii: "<<jocuriMagazin[i].getDataLansarii()<<
+                std::cout<<jocuriMagazin[i].getNume()<<" | Data lansarii: "<<jocuriMagazin[i].getDataLansarii()<<
                 " | Pretul jocului: Gratis | ID: "<<
                 jocuriMagazin[i].getId()<<'\n';
         }
     }
 
     //schimba detaliile unui joc
-    void actualizeazaDetaliiJoc(const string numeJoc, const int idNou, const string dataLansariiNou, const double pretNou) {
+    void actualizeazaDetaliiJoc(const std::string numeJoc, const int idNou, const std::string dataLansariiNou, const double pretNou) {
         for (int i=0; i<numarJocuri; i++) {
             if (jocuriMagazin[i].getNume() == numeJoc) {
                 jocuriMagazin[i].setDataLansarii(dataLansariiNou);
@@ -112,7 +111,7 @@ public:
         sortareJocuri();
     }
 
-    JocMagazin getJocByName(string numeJoc) {
+    JocMagazin getJocByName(std::string numeJoc) {
         for (int i=0; i<numarJocuri; i++) {
             if (jocuriMagazin[i].getNume() == numeJoc) {
                 return jocuriMagazin[i];
@@ -120,7 +119,7 @@ public:
         }
     }
 
-    bool existaJoc(string numeJoc) {
+    bool existaJoc(std::string numeJoc) {
         for (int i=0; i<numarJocuri; i++) {
             if (jocuriMagazin[i].getNume() == numeJoc) {
                 return true;
@@ -138,7 +137,7 @@ int test3() {
     Magazin magazin({joc1, joc2, joc3});
     magazin.adaugaJoc(JocMagazin("Valorant", 4, "2.06.2020", 0.0));
     magazin.stergeJoc("GTA V");
-    cout << magazin.getNumarJocuri() << endl;
+    std::cout<<magazin.getNumarJocuri()<<'\n';
     magazin.afiseazaJocuriSumar();
     magazin.actualizeazaDetaliiJoc("CS:GO", 1, "21.08.2012", 30.00);
     magazin.afiseazaJocuriSumar();

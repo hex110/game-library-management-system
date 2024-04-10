@@ -1,6 +1,5 @@
 #include <bits/stdc++.h>
 #include "cont.h"
-using namespace std;
 
 int main() {
     //creare jocuri
@@ -9,82 +8,82 @@ int main() {
     JocMagazin joc3("Cyberpunk 2077", 2, "10/12/2020", 49.99);
     JocMagazin joc4("Geometry Dash", 322170, "02/06/2020", 20.00);
     //creare librarie
-    vector<Joc> jocuri = {joc1, joc2};
+    std::vector<Joc> jocuri = {joc1, joc2};
     Librarie librarie(jocuri);
     //creare magazin
-    vector<JocMagazin> jocuriMagazin = {joc3, joc4};
+    std::vector<JocMagazin> jocuriMagazin = {joc3, joc4};
     Magazin magazin(jocuriMagazin);
     //creare cont
     Cont cont("hex", 0.00, librarie, magazin);
 
-    cout<<"1: Detalii cont\n";
-    cout<<"2: Schimbati nume utilizator\n";
-    cout<<"3: Adaugati fonduri\n";
-    cout<<"4: Jocuri magazin\n";
-    cout<<"5: Jocuri librarie\n";
-    cout<<"6: Detalii joc\n";
-    cout<<"7: Cumpara joc\n";
-    cout<<"8: Jucati joc\n";
-    cout<<"9: Iesire\n";
+    std::cout<<"1: Detalii cont\n";
+    std::cout<<"2: Schimbati nume utilizator\n";
+    std::cout<<"3: Adaugati fonduri\n";
+    std::cout<<"4: Jocuri magazin\n";
+    std::cout<<"5: Jocuri librarie\n";
+    std::cout<<"6: Detalii joc\n";
+    std::cout<<"7: Cumpara joc\n";
+    std::cout<<"8: Jucati joc\n";
+    std::cout<<"9: Iesire\n";
 
-    string input;
+    std::string input;
     bool continua = true;
     while(continua) {
-        cout<<"Alegeti o optiune: ";
-        cin>>input;
+        std::cout<<"Alegeti o optiune: ";
+        std::cin>>input;
         system("cls");
-        cout<<"1: Detalii cont\n";
-        cout<<"2: Schimbati nume utilizator\n";
-        cout<<"3: Adaugati fonduri\n";
-        cout<<"4: Jocuri magazin\n";
-        cout<<"5: Jocuri librarie\n";
-        cout<<"6: Detalii joc\n";
-        cout<<"7: Cumpara joc\n";
-        cout<<"8: Jucati joc\n";
-        cout<<"9: Iesire\n";
-        cout<<'\n';
+        std::cout<<"1: Detalii cont\n";
+        std::cout<<"2: Schimbati nume utilizator\n";
+        std::cout<<"3: Adaugati fonduri\n";
+        std::cout<<"4: Jocuri magazin\n";
+        std::cout<<"5: Jocuri librarie\n";
+        std::cout<<"6: Detalii joc\n";
+        std::cout<<"7: Cumpara joc\n";
+        std::cout<<"8: Jucati joc\n";
+        std::cout<<"9: Iesire\n";
+        std::cout<<'\n';
         int optiune = stoi(input);
         if (optiune<1 or optiune>9) {
-            cout<<"Optiune invalida\n";
+            std::cout<<"Optiune invalida\n";
             continue;
         }
         switch (optiune) {
             case 1:
                 cont.detaliiCont();
-                cout<<"\n\n";
+                std::cout<<"\n\n";
                 continue;
             case 2:
                 cont.schimbaNume();
-                cout<<"\n\n";
+                std::cout<<"\n\n";
                 continue;
             case 3:
                 cont.adaugaSuma();
-                cout<<"\n\n";
+                std::cout<<"\n\n";
                 continue;
             case 4:
                 cont.afiseazaJocuriMagazin();
-                cout<<"\n\n";
+                std::cout<<"\n\n";
                 continue;
             case 5:
                 cont.afiseazaJocuriLibrarie();
-                cout<<"\n\n";
+                std::cout<<"\n\n";
                 continue;
             case 6:
                 cont.detaliiJoc();
-                cout<<"\n\n";
+                std::cout<<"\n\n";
                 continue;
             case 7:
                 cont.cumparaJoc();
-                cout<<"\n\n";
+                std::cout<<"\n\n";
                 continue;
             case 8:
                 cont.joacaJoc();
-                cout<<"\n\n";
+                std::cout<<"\n\n";
                 continue;
             case 9:
-                cout<<"Va multumesc pentru timpul acordat\n";
+                std::cout<<"Va multumesc pentru timpul acordat\n";
                 //timer de 2 secunde
-                this_thread::sleep_for(chrono::seconds(2));
+                std::this_thread::sleep_for(std::chrono::seconds(2));
                 continua = false;
                 break;
         }
