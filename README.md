@@ -10,4 +10,4 @@ Structura proiectului:
 Clasele folosite sunt:
 Joc, JocMagazin (mostenit din clasa Joc), Librarie, Magazin, Cont
 
-![Poza cu terminalul](TerminalPhoto.jpg "Poza cu terminalul")
+![Poza cu terminalul](TerminalPhoto.png "Poza cu terminalul")
