@@ -81,8 +81,12 @@ public:
     }
 
     //afiseaza toate jocurile in ordinea id-ului
-    void afiseazaJocuri() {
-        cout<<"Librarie jocuri:\n";
+    void afiseazaJocuriSumar() {
+        if (numarJocuri == 0) {
+            cout<<"Magazinul nu mai are jocuri de vandut\n";
+            return;
+        }
+        cout<<"Jocuri disponibile in magazin:\n";
         for (int i=0; i<numarJocuri; i++) {
             if (jocuriMagazin[i].getPret() > 0)
                 cout<<jocuriMagazin[i].getNume()<<" | Data lansarii: "<<jocuriMagazin[i].getDataLansarii()<<
@@ -114,7 +118,15 @@ public:
                 return jocuriMagazin[i];
             }
         }
-    
+    }
+
+    bool existaJoc(string numeJoc) {
+        for (int i=0; i<numarJocuri; i++) {
+            if (jocuriMagazin[i].getNume() == numeJoc) {
+                return true;
+            }
+        }
+        return false;
     }
 
 };
@@ -127,8 +139,8 @@ int test3() {
     magazin.adaugaJoc(JocMagazin("Valorant", 4, "2.06.2020", 0.0));
     magazin.stergeJoc("GTA V");
     cout << magazin.getNumarJocuri() << endl;
-    magazin.afiseazaJocuri();
+    magazin.afiseazaJocuriSumar();
     magazin.actualizeazaDetaliiJoc("CS:GO", 1, "21.08.2012", 30.00);
-    magazin.afiseazaJocuri();
+    magazin.afiseazaJocuriSumar();
     return 0;
 }

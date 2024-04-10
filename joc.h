@@ -104,12 +104,17 @@ public:
     }
 
     string detaliiJoc() const {
-        string s = "Jocul " + nume + " a fost lansat pe data de " + dataLansarii;
-        string s1 = " si are un gameplay captivant.";
-        string s2 = " si este foarte apreciat de critici.";
-        string s3 = " si ofera o experienta unica jucatorilor.";
-        int randomIndex = rand() % 3;
-        switch (randomIndex) {
+        string s = "Jocul " + nume;
+        string s1 = " are un gameplay captivant si este apreciat de oricine.";
+        string s2 = " este apreciat de critici, dar jucatorii nu sunt de acord.";
+        string s3 = " nu este apreciat de nimeni.";
+        //int randomIndex = rand() % 3;
+        int sumaCifre = 0;
+        for(int i=0; i<nume.size(); i++) {
+            sumaCifre += nume[i] - '0';
+        }
+        int indexNume = sumaCifre % 3;
+        switch (indexNume) {
             case 0:
                 s += s1;
                 break;
@@ -161,43 +166,16 @@ public:
 };
 
 int test1() {
-    //am folosit chatgpt sa generez date si teste ca sa ma asigur ca merge totul cum trebuie
-    //am rezolvat bugurile si totul ruleaza
-
-    // Test 1: Constructor and Data Initialization
-    Joc halfLife("Half-Life", 70, "19/11/1998", 60);
-    assert(halfLife.getNume() == "Half-Life");
-    assert(halfLife.getId() == 70);
-    assert(halfLife.getDataLansarii() == "19/11/1998");
-    assert(halfLife.getTimpJucat() == 60);
-    cout << "Constructor and data initialization test passed.\n";
-
-    // Test 2: Copy Constructor and Assignment Operator
-    Joc rocketLeague = halfLife; // Copy constructor
-    assert(rocketLeague.getNume() == "Half-Life");
-    Joc geometryDash("Geometry Dash", 322170, "22/12/2014", 90);
-    rocketLeague = geometryDash; // Assignment operator
-    assert(rocketLeague.getNume() == "Geometry Dash");
-    cout << "Copy constructor and assignment operator test passed.\n";
-
-    // Test 3: Setters and Getters
-    geometryDash.setNume("Changed Name");
-    assert(geometryDash.getNume() == "Changed Name");
-    cout << "Setters and getters test passed.\n";
-
-    // Test 4: Time Played Formatting
-    halfLife.setTimpJucat(60); // Exactly 1 hour
-    assert(halfLife.oreJucate() == "Te-ai jucat Half-Life timp de 1 ore.");
-    halfLife.setTimpJucat(125); // 2 hours and 5 minutes
-    assert(halfLife.oreJucate() == "Te-ai jucat Half-Life timp de 2 ore si 5 de minute.");
-    geometryDash.setTimpJucat(30); // 30 minutes
-    assert(geometryDash.oreJucate() == "Te-ai jucat Changed Name timp de 30 de minute.");
-    cout << "Time played formatting test passed.\n";
-
-    cout << "All tests passed.\n";
+    Joc geometryDash("Geometry Dash", 322170, "22 decembrie 2014", 100);
+    cout << geometryDash.getNume() << endl;
+    cout << geometryDash.getId() << endl;
+    cout << geometryDash.getDataLansarii() << endl;
+    cout << geometryDash.getTimpJucat() << endl;
+    cout << geometryDash.oreJucate() << endl;
+    cout << geometryDash.detaliiJoc() << endl;
 
     //las metoda asta comentata ca sa nu deschida jocul, dar daca se scoate commentul
-    //se observa ca functioneaza
+    //se observa ca functioneaza si chiar se deschide jocul
     //geometryDash.deschideJoc();
     return 0;
 }

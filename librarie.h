@@ -81,8 +81,12 @@ public:
     }
 
     //afiseaza toate jocurile in ordinea id-ului
-    void afiseazaJocuri() {
-        cout<<"Librarie jocuri:\n";
+    void afiseazaJocuriSumar() {
+        if (numarJocuri == 0) {
+            cout<<"Nu ai nici un joc in librarie\n";
+            return;
+        }
+        cout<<"Libraria ta de jocuri:\n";
         for (int i=0; i<numarJocuri; i++) {
             cout<<jocuri[i].getNume()<<" | Data lansarii: "<<jocuri[i].getDataLansarii()<<
             " | Timp jucat: "<<jocuri[i].oreJucate()<<" | ID: "<<
@@ -104,6 +108,24 @@ public:
         sortareJocuri();
     }
 
+    Joc getJocByName(string numeJoc) {
+        //transform numeJoc into all lowercase and remove spaces or special characters
+        for (int i=0; i<numarJocuri; i++) {
+            if (jocuri[i].getNume() == numeJoc) {
+                return jocuri[i];
+            }
+        }
+    }
+
+    bool existaJoc(string numeJoc) {
+        for (int i=0; i<numarJocuri; i++) {
+            if (jocuri[i].getNume() == numeJoc) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 };
 
 int test2() {
@@ -111,8 +133,8 @@ int test2() {
     cout << librarie.getNumarJocuri() << endl;
     librarie.adaugaJoc(Joc("Valorant", 2, "2 iunie 2020", 50));
     librarie.stergeJoc("GTA V");
-    librarie.afiseazaJocuri();
+    librarie.afiseazaJocuriSumar();
     librarie.actualizeazaDetaliiJoc("CS:GO", 1, "21 august 2012", 400);
-    librarie.afiseazaJocuri();
+    librarie.afiseazaJocuriSumar();
     return 0;
 }

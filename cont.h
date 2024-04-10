@@ -5,14 +5,14 @@ using namespace std;
 
 class Cont{
 private:
-    int numeUtilizator;
+    string numeUtilizator;
     double bani;
     Librarie librarie;
     Magazin magazin;
 
-protected:
+public:
     //constructor
-    Cont(int numeUtilizator, double bani, Librarie librarie, Magazin magazin) : 
+    Cont(string numeUtilizator, double bani, Librarie librarie, Magazin magazin) : 
     numeUtilizator{numeUtilizator}, bani{bani}, librarie{librarie}, magazin{magazin} {}
 
     //copy constructor
@@ -31,7 +31,7 @@ protected:
     }
 
     //getters
-    int getNumeUtilizator() const {
+    string getNumeUtilizator() const {
         return numeUtilizator;
     }
 
@@ -48,7 +48,7 @@ protected:
     }
 
     //setter
-    void setNumeUtilizator(int numeUtilizatorNou) {
+    void setNumeUtilizator(string numeUtilizatorNou) {
         numeUtilizator = numeUtilizatorNou;
     }
 
@@ -66,27 +66,113 @@ protected:
 
 public:
     //metode specifice clasei cont
-    void adaugaSuma(double suma) {
+    void adaugaSuma() {
+        double suma;
         cout<<"Cati bani doriti sa adaugati in cont? ";
         cin>>suma;
         bani += suma;
-        cout<<"Se incarca...";
+        cout<<"Se incarca...\n";
         //timer for 1 second
-        //this_thread::sleep_for(chrono::seconds(1));
+        this_thread::sleep_for(chrono::seconds(1));
         cout<<"Suma a fost adaugata cu succes!\n";
     }
 
-    void cumparaJoc(string numeJoc) {
+    void schimbaNume() {
+        string numeNou;
+        cout<<"Introduceti noul nume de utilizator: \n";
+        cin.ignore();
+        getline(cin, numeNou);
+        setNumeUtilizator(numeNou);
+        cout<<"Numele a fost schimbat cu succes!\n";
+    }
+
+    void cumparaJoc() {
+        string numeJoc, raspuns;
+        magazin.afiseazaJocuriSumar();
+        cout<<"\nCe joc doriti sa cumparati? (introduceti numele jocului)\n";
+        cin.ignore();
+        getline(cin, numeJoc);
+        if (!magazin.existaJoc(numeJoc) and !librarie.existaJoc(numeJoc)) {
+            cout<<"Jocul nu exista!\n";
+            return;
+        }
+        else if (!magazin.existaJoc(numeJoc)) {
+            cout<<"Deja ati cumparat acest joc.\n";
+            return;
+        }
         JocMagazin joc = magazin.getJocByName(numeJoc);
 
         if (bani >= joc.getPret()) {
-            bani -= joc.getPret();
-            librarie.adaugaJoc(joc);
-            magazin.stergeJoc(joc.getNume());
-            cout<<"Jocul a fost cumparat cu succes!\n";
-        } else {
-            cout<<"Nu aveti suficienti bani pentru a cumpara acest joc!\n";
+            cout<<"Aveti fonduri suficiente pentru a cumpara acest joc!\n";
+            cout<<"Doriti sa procedati? (da/nu)\n";
+            cin>>raspuns;
+
+            if (raspuns == "nu" or raspuns == "NU") {
+                cout<<"Nu ati cumparat jocul. Multumim pentru timpul acordat\n";
+                return;
+            }
+            else if (raspuns == "da" or raspuns == "DA") {
+                cout<<"Se incarca...\n";
+                //timer for 1 second
+                this_thread::sleep_for(chrono::seconds(1));
+                bani -= joc.getPret();
+                librarie.adaugaJoc(joc);
+                magazin.stergeJoc(numeJoc);
+                cout<<"Jocul a fost cumparat cu succes! Il gasiti in libraria voastra.\n";
+                return;
+            }
+            else cout<<"Raspuns invalid. Va rugam reincercati.\n";
+        } 
+        else cout<<"Nu aveti suficiente fonduri pentru a cumpara acest joc!\n";
+    }
+
+    void joacaJoc() {
+        string numeJoc;
+        librarie.afiseazaJocuriSumar();
+        cout<<"\nCe joc doriti sa jucati? (introduceti numele jocului)\n";
+        cin.ignore();
+        getline(cin, numeJoc);
+        if (!librarie.existaJoc(numeJoc) and !magazin.existaJoc(numeJoc)) {
+            cout<<"Jocul nu exista!\n";
+            return;
         }
+        else if (!librarie.existaJoc(numeJoc)) {
+            cout<<"Nu aveti acest joc in librarie.\n";
+            return;
+        }
+        Joc joc = librarie.getJocByName(numeJoc);
+        joc.deschideJoc();
+        cout<<"Jocul se deschide acum!\n";
+    }
+
+    void afiseazaJocuriLibrarie() {
+        librarie.afiseazaJocuriSumar();
+    }
+
+    void afiseazaJocuriMagazin() {
+        magazin.afiseazaJocuriSumar();
+    }
+
+    void detaliiCont() {
+        cout<<"Nume utilizator: "<<numeUtilizator<<"\n";
+        cout<<"Fonduri disponibile: "<<bani<<" euro\n";
+        cout<<"Numar de jocuri detinute: "<<librarie.getNumarJocuri()<<"\n";
     }
     
+    void detaliiJoc() {
+        string numeJoc;
+        cout<<"Introduceti numele jocului pentru care doriti detalii: ";
+        cin.ignore();
+        getline(cin, numeJoc);
+        cout<<'\n';
+        if (librarie.existaJoc(numeJoc)) {
+            Joc joc = librarie.getJocByName(numeJoc);
+            cout<<joc.detaliiJoc();
+        }
+        else if (magazin.existaJoc(numeJoc)) {
+            JocMagazin joc = magazin.getJocByName(numeJoc);
+            cout<<joc.detaliiJoc();
+        }
+        else cout<<"Jocul nu exista!\n";
+    }
 };
