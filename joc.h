@@ -1,20 +1,18 @@
+#ifndef JOC_H
+#define JOC_H
+
 #include <bits/stdc++.h>
 using namespace std;
 
 class Joc{
 private:
-    //am decis sa nu folosesc char cu pointer ca mi se parea mai simplu cu string
-    //si am cautat si aflat ca sunt comparabile in termen de performanta
-    //deci sper ca nu e problema
+    int timpJucat;
+protected:
     string nume;
     int id;
     string dataLansarii;
-    int timpJucat;
 
-    //metoda privata folosita intr-o metoda publica de mai jos
-    //schimba dintr-un int care reprezinta timpul jucat
-    //intr-un string care afiseaza intr-un mod frumos de citit
-    //cate minute sau ore a fost acel joc jucat
+    //metoda ce afiseaza timpul jucat sub forma de string formatat frumos
     string timpJucatCaString() const {
         string timp;
         if (timpJucat < 60) { //sub 60 minute
@@ -32,8 +30,8 @@ private:
     }
 public:
     //constructor
-    Joc(string nume, int id, string dataLansarii, int timpJucat) : nume{nume}, id{id}, dataLansarii{dataLansarii},
-    timpJucat{timpJucat} {};
+    Joc(string nume, int id, string dataLansarii, int timpJucat) : nume{nume}, id{id},
+    dataLansarii{dataLansarii}, timpJucat{timpJucat} {};
 
     //nu avem nevoie sa dam overwrite la destructor pentru ca nu folosim char cu pointer
     //~Joc() {}
@@ -127,6 +125,41 @@ public:
 
 };
 
+//clasa mostenita de la clasa Joc care include si pret, pentru a fi folosita in clasa Magazin
+class JocMagazin : public Joc {
+private:
+    double pret;
+
+public:
+    //cosntructor
+    JocMagazin(string nume, int id, string dataLansarii, double pret) :
+    Joc(nume, id, dataLansarii, 0), pret{pret} {};
+
+    //copy constructor
+    JocMagazin(const JocMagazin& other) : Joc(other) {
+        pret = other.pret;
+    }
+
+    //operator =
+    JocMagazin& operator=(const JocMagazin& other) {
+        if (this != &other) {
+            nume = other.nume;
+            id = other.id;
+            dataLansarii = other.dataLansarii;
+            pret = other.pret;
+        }
+        return *this;
+    }
+
+    double getPret() const {
+        return pret;
+    }
+
+    void setPret(const double pretNou) {
+        this->pret = pretNou;
+    }
+};
+
 int test1() {
     //am folosit chatgpt sa generez date si teste ca sa ma asigur ca merge totul cum trebuie
     //am rezolvat bugurile si totul ruleaza
@@ -168,3 +201,5 @@ int test1() {
     //geometryDash.deschideJoc();
     return 0;
 }
+
+#endif // JOC_H

@@ -2,10 +2,10 @@
 #include "joc.h"
 using namespace std;
 
-class Librarie{
+class Librarie{ 
 private:
-    int numarJocuri;
     vector<Joc> jocuri;
+    int numarJocuri;
 
     //sorteaza jocuri dupa id, metoda care isi ia call mereu cand se schimba jocurile din librarie
     void sortareJocuri() {
@@ -23,14 +23,15 @@ private:
                 break;
         }
     }
+
 public:
-    // Constructor
+    //constructor
     Librarie(const vector<Joc>& jocuri) : jocuri{jocuri}, numarJocuri{jocuri.size()} {}
 
-    // Copy constructor
+    //copy constructor
     Librarie(const Librarie& other) : numarJocuri(other.numarJocuri), jocuri(other.jocuri) {}
 
-    // Assignment operator
+    //= operator
     Librarie& operator=(const Librarie& other) {
         if (this != &other) {
             numarJocuri = other.numarJocuri;
@@ -39,7 +40,7 @@ public:
         return *this;
     }
 
-    // Getters
+    //getters
     int getNumarJocuri() const {
         return numarJocuri;
     }
@@ -91,7 +92,7 @@ public:
 
     //schimba detaliile unui joc
     //se putea face si dupa id, dar m-am gandit ca dupa nume e mai usor de folosit
-    void actualizeazaDetaliiJoc(const string numeJoc, const string dataLansariiNou, const int timpJucatNou, const int idNou) {
+    void actualizeazaDetaliiJoc(const string numeJoc, const int idNou, const string dataLansariiNou, const int timpJucatNou) {
         for (int i=0; i<numarJocuri; i++) {
             if (jocuri[i].getNume() == numeJoc) {
                 jocuri[i].setDataLansarii(dataLansariiNou);
@@ -111,7 +112,7 @@ int test2() {
     librarie.adaugaJoc(Joc("Valorant", 2, "2 iunie 2020", 50));
     librarie.stergeJoc("GTA V");
     librarie.afiseazaJocuri();
-    librarie.actualizeazaDetaliiJoc("CS:GO", "21 august 2012", 400, 1);
+    librarie.actualizeazaDetaliiJoc("CS:GO", 1, "21 august 2012", 400);
     librarie.afiseazaJocuri();
     return 0;
 }
