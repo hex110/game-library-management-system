@@ -11,3 +11,14 @@ Clasele folosite sunt:
 Joc, JocMagazin (mostenit din clasa Joc), Librarie, Magazin, Cont
 
 ![Poza cu terminalul](TerminalPhoto.png "Poza cu terminalul")
+
+Functionalitati:
+Detalii cont - Afiseaza numele, suma de bani, si numarul de jocuri detinute
+Schimbati nume utilizator - Schimba numele utilizatorului
+Adaugati fonduri - Adauga o suma de bani la cont
+Jocuri magazin - Afiseaza jocurile disponibile din magazin
+Jocuri librarie - Afiseaza jocurile disponibile din librarie
+Detalii joc - Afiseaza detalii despre un joc
+Cumpara joc - Cumpara un joc din magazin
+Jucati joc - Porneste un joc (⚠️WARNING⚠️: Aceasta comanda chiar porneste jocul pe Steam)
+Iesire - Inchide programul

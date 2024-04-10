@@ -29,7 +29,8 @@ protected:
     }
 public:
     //constructor
-    Joc(std::string nume, int id, std::string dataLansarii, int timpJucat) : nume{nume}, id{id},
+    Joc(std::string nume = "", int id = -1, std::string dataLansarii = "00/00/0000",
+    int timpJucat = 0) : nume{nume}, id{id},
     dataLansarii{dataLansarii}, timpJucat{timpJucat} {};
 
     //copy constructor

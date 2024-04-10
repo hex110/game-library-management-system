@@ -25,10 +25,12 @@ private:
 
 public:
     //constructor
-    Magazin(const std::vector<JocMagazin>& jocuri) : jocuriMagazin{jocuri}, numarJocuri{jocuri.size()} {}
+    Magazin(const std::vector<JocMagazin>& jocuri = {}) : jocuriMagazin{jocuri}, 
+    numarJocuri{jocuri.size()} {}
 
     //copy constructor
-    Magazin(const Magazin& other) : numarJocuri(other.numarJocuri), jocuriMagazin(other.jocuriMagazin) {}
+    Magazin(const Magazin& other) : numarJocuri(other.numarJocuri), 
+    jocuriMagazin(other.jocuriMagazin) {}
 
     //= operator
     Magazin& operator=(const Magazin& other) {

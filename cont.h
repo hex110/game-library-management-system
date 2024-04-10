@@ -11,7 +11,8 @@ private:
 
 public:
     //constructor
-    Cont(const char* numeUtilizator, double bani, Librarie librarie, Magazin magazin) : 
+    Cont(const char* numeUtilizator = "", double bani = 0.00, 
+    Librarie librarie = Librarie(), Magazin magazin = Magazin()) : 
     bani{bani}, librarie{librarie}, magazin{magazin} {
         this->numeUtilizator = new char[strlen(numeUtilizator) + 1];
         strcpy(this->numeUtilizator, numeUtilizator);

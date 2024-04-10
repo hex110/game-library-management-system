@@ -25,7 +25,7 @@ private:
 
 public:
     //constructor
-    Librarie(const std::vector<Joc>& jocuri) : jocuri{jocuri}, numarJocuri{jocuri.size()} {}
+    Librarie(const std::vector<Joc>& jocuri = {}) : jocuri{jocuri}, numarJocuri{jocuri.size()} {}
 
     //copy constructor
     Librarie(const Librarie& other) : numarJocuri(other.numarJocuri), jocuri(other.jocuri) {}
@@ -99,7 +99,8 @@ public:
 
     //schimba detaliile unui joc
     //se putea face si dupa id, dar m-am gandit ca dupa nume e mai usor de folosit
-    void actualizeazaDetaliiJoc(const std::string numeJoc, const int idNou, const std::string dataLansariiNou, const int timpJucatNou) {
+    void actualizeazaDetaliiJoc(const std::string numeJoc, const int idNou,
+    const std::string dataLansariiNou, const int timpJucatNou) {
         for (int i=0; i<numarJocuri; i++) {
             if (jocuri[i].getNume() == numeJoc) {
                 jocuri[i].setDataLansarii(dataLansariiNou);
@@ -132,7 +133,8 @@ public:
 };
 
 int test2() {
-    Librarie librarie({Joc("GTA V", 4, "17 septembrie 2013", 120), Joc("CS:GO", 3, "21 august 2012", 300)});
+    Librarie librarie({Joc("GTA V", 4, "17 septembrie 2013", 120),
+    Joc("CS:GO", 3, "21 august 2012", 300)});
     std::cout<<librarie.getNumarJocuri()<<'\n';
     librarie.adaugaJoc(Joc("Valorant", 2, "2 iunie 2020", 50));
     librarie.stergeJoc("GTA V");

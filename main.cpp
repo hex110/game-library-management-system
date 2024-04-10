@@ -2,16 +2,19 @@
 #include "cont.h"
 
 int main() {
-    //creare jocuri
-    Joc joc1("GTA V", 1, "17/09/2013", 100);
-    Joc joc2("Minecraft", 2, "18/09/2011", 200);
-    JocMagazin joc3("Cyberpunk 2077", 2, "10/12/2020", 49.99);
-    JocMagazin joc4("Geometry Dash", 322170, "02/06/2020", 20.00);
+    Joc joc1("GTA V", 271590, "14/04/2015", 40);
+    Joc joc2("Rocket League", 252950, "07/07/2015", 4000);
+    Joc joc3("Apex Legends", 1172470, "05/11/2020", 1000);
+    JocMagazin joc4("Cyberpunk 2077", 1091500, "10/12/2020", 59.99);
+    JocMagazin joc5("Geometry Dash", 322170, "22/12/2014", 0);
+    JocMagazin joc6("Elden Ring", 1245620, "25/02/2022", 59.99);
+    JocMagazin joc7("Half-Life", 70, "08/11/1998", 9.99);
+    JocMagazin joc8("Dota 2", 570, "09/07/2013", 0);
     //creare librarie
-    std::vector<Joc> jocuri = {joc1, joc2};
+    std::vector<Joc> jocuri = {joc1, joc2, joc3};
     Librarie librarie(jocuri);
     //creare magazin
-    std::vector<JocMagazin> jocuriMagazin = {joc3, joc4};
+    std::vector<JocMagazin> jocuriMagazin = {joc4, joc5, joc6, joc7, joc8};
     Magazin magazin(jocuriMagazin);
     //creare cont
     Cont cont("hex", 0.00, librarie, magazin);
