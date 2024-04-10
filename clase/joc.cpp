@@ -93,7 +93,7 @@ public:
     }
 
     //setters
-    void setNume(const std::string numeNou) {
+    void setNume(const std::string& numeNou) {
         this->nume = numeNou;
     }
 

@@ -31,16 +31,6 @@ int main() {
     //creare cont
     Cont cont("hex", 0.00, librarie, magazin);
 
-    std::cout<<"1: Detalii cont\n";
-    std::cout<<"2: Schimbati nume utilizator\n";
-    std::cout<<"3: Adaugati fonduri\n";
-    std::cout<<"4: Jocuri magazin\n";
-    std::cout<<"5: Jocuri librarie\n";
-    std::cout<<"6: Detalii joc\n";
-    std::cout<<"7: Cumpara joc\n";
-    std::cout<<"8: Jucati joc\n";
-    std::cout<<"9: Iesire\n";
-
     std::string input;
     bool continua = true;
     while(continua) {
