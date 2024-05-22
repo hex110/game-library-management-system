@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-#include "joc.cpp"
+#include "joc.h"
 
 class Librarie{ 
 private:

@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-#include "joc.cpp"
+#include "joc.h"
 
 //clasa la fel ca librarie, dar ce foloseste un std::vector de tip JocMagazin in loc de Joc
 class Magazin{

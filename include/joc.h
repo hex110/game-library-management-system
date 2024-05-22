@@ -21,7 +21,7 @@ public:
     friend std::istream& operator>>(std::istream& in, Joc& joc);
     std::string getNume();
     int getId();
-    std::string getDataLansarii;
+    std::string getDataLansarii();
     int getTimpJucat();
     void setNume(const std::string numeNou);
     void setId(const int idNou);
@@ -32,7 +32,6 @@ public:
     void deschideJoc();
     std::string oreJucate();
     std::string detaliiJoc();
-
 };
 
 class JocMagazin : public Joc {

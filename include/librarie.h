@@ -3,8 +3,8 @@
 
 class Librarie{ 
 private:
-    std::vector<Joc> jocuri;
     int numarJocuri;
+    std::vector<Joc> jocuri;
 
     void sortareJocuri();
 

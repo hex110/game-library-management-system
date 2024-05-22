@@ -156,7 +156,7 @@ private:
     double pret;
 
 public:
-    //cosntructor
+    //constructor
     JocMagazin(std::string nume, int id, std::string dataLansarii, double pret) :
     Joc(nume, id, dataLansarii, 0), pret{pret} {};
 
