@@ -1,7 +1,8 @@
-the todo functions
-add static
-add casts (static and dynamic casts)
-add const
 add exception handling
+- add it to the inputs you give in the console
+- make two exceptions, not correct type (if you type a string when you need an int for example), and not existing (when the game name doesn't exist for example)
+- try to add them everywhere relevant
 
-do main file
+make admin logic work (make all games available in library at all times)
+- whenever you check your library, if there are any games in the magazin, move them over
+- also be sure there is no check of ownership when you try to launch a game

@@ -1,6 +1,9 @@
+#ifndef CONT_CPP
+#define CONT_CPP
+
 #include <bits/stdc++.h>
-#include "librarie.h"
-#include "magazin.h"
+#include "../src/librarie.cpp"
+#include "../src/magazin.cpp"
 
 class Cont{
 protected:
@@ -29,6 +32,10 @@ public:
     virtual void autentificare() = 0;
     virtual void afiseazaJocuriLibrarie() = 0;
     virtual void afiseazaJocuriMagazin() = 0;
+
+    std::string getNumeUtilizator() {
+        return std::string(numeUtilizator);
+    }
     
     void schimbaNume() {
         std::string numeNou;
@@ -79,3 +86,5 @@ public:
         std::cout<<"Jocul se deschide acum!\n";
     }
 };
+
+#endif // CONT_CPP

@@ -1,5 +1,8 @@
+#ifndef MAGAZIN_CPP
+#define MAGAZIN_CPP
+
 #include <bits/stdc++.h>
-#include "joc.h"
+#include "../src/joc.cpp"
 
 //clasa la fel ca librarie, dar ce foloseste un std::vector de tip JocMagazin in loc de Joc
 class Magazin{
@@ -145,3 +148,5 @@ int test3() {
     magazin.afiseazaJocuriSumar();
     return 0;
 }
+
+#endif // MAGAZIN_CPP

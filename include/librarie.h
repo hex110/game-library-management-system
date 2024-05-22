@@ -1,28 +1,33 @@
-#include <bits/stdc++.h>
-#include "joc.h"
+// #ifndef LIBRARIE_H
+// #define LIBRARIE_H
 
-class Librarie{ 
-private:
-    int numarJocuri;
-    std::vector<Joc> jocuri;
+// #include <bits/stdc++.h>
+// #include "joc.h"
 
-    void sortareJocuri();
+// class Librarie{ 
+// private:
+//     int numarJocuri;
+//     std::vector<Joc> jocuri;
 
-public:
-    Librarie(const std::vector<Joc>& jocuri = {});
-    Librarie(const Librarie& other);
-    Librarie& operator=(const Librarie& other);
-    int getNumarJocuri();
-    std::vector<Joc> getJocuri();
-    void setJocuri(const std::vector<Joc>& jocuriNou);
+//     void sortareJocuri();
 
-    //metode specifice clasei librarie
-    void adaugaJoc(const Joc& joc);
-    void stergeJoc(const std::string numeJoc);
-    void afiseazaJocuriSumar();
-    void actualizeazaDetaliiJoc(const std::string numeJoc, const int idNou,
-    const std::string dataLansariiNou, const int timpJucatNou);
-    Joc getJocByName(std::string numeJoc);
-    bool existaJoc(std::string numeJoc);
+// public:
+//     Librarie(const std::vector<Joc>& jocuri = {});
+//     Librarie(const Librarie& other);
+//     Librarie& operator=(const Librarie& other);
+//     int getNumarJocuri();
+//     std::vector<Joc> getJocuri();
+//     void setJocuri(const std::vector<Joc>& jocuriNou);
 
-};
+//     //metode specifice clasei librarie
+//     void adaugaJoc(const Joc& joc);
+//     void stergeJoc(const std::string numeJoc);
+//     void afiseazaJocuriSumar();
+//     void actualizeazaDetaliiJoc(const std::string numeJoc, const int idNou,
+//     const std::string dataLansariiNou, const int timpJucatNou);
+//     Joc getJocByName(std::string numeJoc);
+//     bool existaJoc(std::string numeJoc);
+
+// };
+
+// #endif // LIBRARIE_H

@@ -1,28 +1,33 @@
-#include <bits/stdc++.h>
-#include "cont.h"
+// #ifndef UTILIZATOR_H
+// #define UTILIZATOR_H
 
-class Utilizator : public Cont{
-private:
-    double bani;
+// #include <bits/stdc++.h>
+// #include "cont.h"
 
-public:
-    Utilizator(const char* numeUtilizator = "", const char* parola = "",
-    double bani = 0.00, Librarie librarie = Librarie(), Magazin magazin = Magazin());
-    ~Utilizator();
+// class Utilizator : public Cont{
+// private:
+//     double bani;
 
-    //deja incluse in clasa de baza
-    void schimbaNume();
-    void detaliiJoc();
-    void joacaJoc();
+// public:
+//     Utilizator(const char* numeUtilizator = "", const char* parola = "",
+//     double bani = 0.00, Librarie librarie = Librarie(), Magazin magazin = Magazin());
+//     ~Utilizator();
 
-    //metode override
-    void detaliiCont() override;
-    void modificareParola() override;
-    void autentificare() override;
-    void afiseazaJocuriLibrarie() override;
-    void afiseazaJocuriMagazin() override;
+//     //deja incluse in clasa de baza
+//     //void schimbaNume();
+//     //void detaliiJoc();
+//     //void joacaJoc();
 
-    //metode specifice
-    void adaugaSuma();
-    void cumparaJoc();
-};
+//     //metode override
+//     void detaliiCont() override;
+//     void modificareParola() override;
+//     void autentificare() override;
+//     void afiseazaJocuriLibrarie() override;
+//     void afiseazaJocuriMagazin() override;
+
+//     //metode specifice
+//     void adaugaSuma();
+//     void cumparaJoc();
+// };
+
+// #endif // UTILIZATOR_H

@@ -1,17 +1,8 @@
 #include <bits/stdc++.h>
-#include "src/cont.cpp"
-
-enum OptiuniMeniu {
-    OPT_DetaliiCont = 1,
-    OPT_SchimbaNume,
-    OPT_AdaugaSuma,
-    OPT_AfiseazaJocuriMagazin,
-    OPT_AfiseazaJocuriLibrarie,
-    OPT_DetaliiJoc,
-    OPT_CumparaJoc,
-    OPT_JoacaJoc,
-    OPT_Iesire
-};
+#include "src/admin.cpp"
+#include "src/utilizator.cpp"
+#include "interfaces/adminInterface.cpp"
+#include "interfaces/utilizatorInterface.cpp"
 
 int main() {
     Joc joc1("GTA V", 271590, "14/04/2015", 40);
@@ -28,86 +19,52 @@ int main() {
     //creare magazin
     std::vector<JocMagazin> jocuriMagazin = {joc4, joc5, joc6, joc7, joc8};
     Magazin magazin(jocuriMagazin);
-    //creare cont
-    Cont cont("hex", 0.00, librarie, magazin);
+    //creare cont admin
+    //Cont cont("hex", 0.00, librarie, magazin);
+    Admin contAdmin("hex", "Parola123", librarie, magazin);
+    //creare cont utilizator
+    Utilizator contUtilizator("ion", "1234", 30.00, librarie, magazin);
 
-    std::cout<<"1: Detalii cont\n";
-    std::cout<<"2: Schimbati nume utilizator\n";
-    std::cout<<"3: Adaugati fonduri\n";
-    std::cout<<"4: Jocuri magazin\n";
-    std::cout<<"5: Jocuri librarie\n";
-    std::cout<<"6: Detalii joc\n";
-    std::cout<<"7: Cumpara joc\n";
-    std::cout<<"8: Jucati joc\n";
-    std::cout<<"9: Iesire\n";
-    std::cout<<'\n';
+    //dynamic cast the two pointers to Cont*
+    Cont* contAdminPtr = dynamic_cast<Cont*>(&contAdmin);
+    Cont* contUtilizatorPtr = dynamic_cast<Cont*>(&contUtilizator);
 
-    std::string input;
-    bool continua = true, windows;
+    //vector de conturi
+    std::vector<Cont*> conturi = {contAdminPtr, contUtilizatorPtr};
+
+    bool continua = true;
     #ifdef _WIN32
-        windows = true;
+        const bool windows = true;
     #elif __linux__
-        windows = false;
+        const bool windows = false;
     #endif
-    while(continua) {
-        std::cout<<"Alegeti o optiune: ";
-        std::cin>>input;
-        windows ? system("cls") : system("clear");
-        std::cout<<"1: Detalii cont\n";
-        std::cout<<"2: Schimbati nume utilizator\n";
-        std::cout<<"3: Adaugati fonduri\n";
-        std::cout<<"4: Jocuri magazin\n";
-        std::cout<<"5: Jocuri librarie\n";
-        std::cout<<"6: Detalii joc\n";
-        std::cout<<"7: Cumpara joc\n";
-        std::cout<<"8: Jucati joc\n";
-        std::cout<<"9: Iesire\n";
-        std::cout<<'\n';
-        int optiune = stoi(input);
-        if (optiune<1 or optiune>9) {
-            std::cout<<"Optiune invalida\n";
-            continue;
-        }
-        switch (optiune) {
-            case OPT_DetaliiCont:
-                cont.detaliiCont();
-                std::cout<<"\n\n";
-                continue;
-            case OPT_SchimbaNume:
-                cont.schimbaNume();
-                std::cout<<"\n\n";
-                continue;
-            case OPT_AdaugaSuma:
-                cont.adaugaSuma();
-                std::cout<<"\n\n";
-                continue;
-            case OPT_AfiseazaJocuriMagazin:
-                cont.afiseazaJocuriMagazin();
-                std::cout<<"\n\n";
-                continue;
-            case OPT_AfiseazaJocuriLibrarie:
-                cont.afiseazaJocuriLibrarie();
-                std::cout<<"\n\n";
-                continue;
-            case OPT_DetaliiJoc:
-                cont.detaliiJoc();
-                std::cout<<"\n\n";
-                continue;
-            case OPT_CumparaJoc:
-                cont.cumparaJoc();
-                std::cout<<"\n\n";
-                continue;
-            case OPT_JoacaJoc:
-                cont.joacaJoc();
-                std::cout<<"\n\n";
-                continue;
-            case OPT_Iesire:
-                std::cout<<"Va multumesc pentru timpul acordat\n";
-                //timer de 2 secunde
-                std::this_thread::sleep_for(std::chrono::seconds(2));
-                continua = false;
+
+    std::cout<<"Introduceti numele de utilizator: ";
+    std::string numeUtilizator = "";
+    std::cin>>numeUtilizator;
+    Cont* contCurent = nullptr;
+    while (contCurent == nullptr) {
+        for (auto cont : conturi) {
+            if (cont->getNumeUtilizator() == numeUtilizator) {
+                contCurent = cont;
                 break;
+            }
         }
+        if (contCurent == nullptr) {
+            windows ? system("cls") : system("clear");
+            std::cout << "Nume de utilizator nu a fost gasit. Incercati din nou: ";
+            std::cin >> numeUtilizator;
+        }
+    }
+    contCurent->autentificare();
+
+    //if cont is utilizator, begin the main in utilizator.cpp
+    //if cont is admin, begin the main in admin.cpp
+    if (dynamic_cast<Utilizator*>(contCurent)) {
+        startCLIUtilizator(*dynamic_cast<Utilizator*>(contCurent));
+    }
+    else if (dynamic_cast<Admin*>(contCurent)) {
+        startCLIAdmin(*dynamic_cast<Admin*>(contCurent));
     }
     return 0;
 }

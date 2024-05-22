@@ -1,27 +1,30 @@
-#include <bits/stdc++.h>
-#include "cont.h"
+// #ifndef ADMIN_H
+// #define ADMIN_H
 
-class Admin : public Cont{
-public:
-    Admin(const char* numeUtilizator = "", const char* parola = "", 
-    Librarie librarie = Librarie(), Magazin magazin = Magazin());
-    ~Admin();
+// #include <bits/stdc++.h>
+// #include "cont.h"
 
-    //deja incluse in clasa de baza
-    void schimbaNume();
-    void detaliiJoc();
-    void joacaJoc();
+// class Admin : public Cont{
+// public:
+//     Admin(const char* numeUtilizator = "", const char* parola = "", 
+//     Librarie librarie = Librarie(), Magazin magazin = Magazin());
+//     ~Admin();
 
-    //metode override
-    void detaliiCont() override;
-    void modificareParola() override;
-    void autentificare() override;
-    void afiseazaJocuriLibrarie() override;
-    void afiseazaJocuriMagazin() override;
+//     //deja incluse in clasa de baza
+//     //void schimbaNume();
+//     //void detaliiJoc();
+//     //void joacaJoc();
 
-    //metode specifice
-    void schimbaDetaliiJoc();
-    void adaugaJocMagazin();
-    void stergeJocMagazin();
-    void blocheazaCont();
-};
+//     //metode override
+//     void detaliiCont() override;
+//     void modificareParola() override;
+//     void autentificare() override;
+//     void afiseazaJocuriLibrarie() override;
+//     void afiseazaJocuriMagazin() override;
+
+//     //metode specifice
+//     void adaugaJocMagazin();
+//     void stergeJocMagazin();
+// };
+
+// #endif // ADMIN_H

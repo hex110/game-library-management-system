@@ -1,26 +1,33 @@
-#include <bits/stdc++.h>
-#include "librarie.h"
-#include "magazin.h"
+// #ifndef CONT_H
+// #define CONT_H
 
-class Cont{
-protected:
-    char* numeUtilizator;
-    char* parola;
-    Librarie librarie;
-    Magazin magazin;
+// #include <bits/stdc++.h>
+// #include "librarie.h"
+// #include "magazin.h"
 
-public:
-    Cont(const char* numeUtilizator = "", const char* parola = "", 
-    Librarie librarie = Librarie(), Magazin magazin = Magazin());
-    virtual ~Cont();
+// class Cont{
+// protected:
+//     char* numeUtilizator;
+//     char* parola;
+//     Librarie librarie;
+//     Magazin magazin;
 
-    virtual void detaliiCont() = 0;
-    virtual void modificareParola() = 0;
-    virtual void autentificare() = 0;
-    virtual void afiseazaJocuriLibrarie() = 0;
-    virtual void afiseazaJocuriMagazin() = 0;
+// public:
+//     Cont(const char* numeUtilizator = "", const char* parola = "", 
+//     Librarie librarie = Librarie(), Magazin magazin = Magazin());
+//     virtual ~Cont();
+
+//     virtual void detaliiCont() = 0;
+//     virtual void modificareParola() = 0;
+//     virtual void autentificare() = 0;
+//     virtual void afiseazaJocuriLibrarie() = 0;
+//     virtual void afiseazaJocuriMagazin() = 0;
     
-    virtual void schimbaNume();
-    virtual void detaliiJoc();
-    virtual void joacaJoc();
-};
+//     char* getNumeUtilizator();
+
+//     virtual void schimbaNume();
+//     virtual void detaliiJoc();
+//     virtual void joacaJoc();
+// };
+
+// #endif // CONT_H

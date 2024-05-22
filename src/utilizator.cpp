@@ -1,5 +1,8 @@
+#ifndef UTILIZATOR_CPP
+#define UTILIZATOR_CPP
+
 #include <bits/stdc++.h>
-#include "cont.h"
+#include "../src/cont.cpp"
 
 class Utilizator : public Cont{
 private:
@@ -22,8 +25,37 @@ public:
         std::cout<<"Numar de jocuri detinute: "<<librarie.getNumarJocuri()<<"\n";
     }
 
-    void modificareParola() override; //todo
-    void autentificare() override; //todo
+    void modificareParola() override {
+        std::cout<<"Introduceti parola curenta: ";
+        std::string parolaCurenta;
+        std::cin>>parolaCurenta;
+        if (parolaCurenta != parola) {
+            std::cout<<"Parola incorecta\n";
+            return;
+        }
+        std::cout<<"\nIntroduceti noua parola: ";
+        char* nouaParola = new char[100];
+        std::cin>>nouaParola;
+        delete[] parola;
+        parola = nouaParola;
+        std::cout<<"Parola schimbata cu succes\n";
+        std::this_thread::sleep_for(std::chrono::seconds(1));
+        return;
+    }
+    
+    void autentificare() override {
+        std::cout<<"Introduceti parola: ";
+        std::string parolaIntrodusa;
+        std::cin>>parolaIntrodusa;
+        while (parolaIntrodusa != parola) {
+            std::cout<<"Parola incorecta\n";
+            std::cout<<"Introduceti parola: ";
+            std::cin>>parolaIntrodusa;
+        }
+        std::cout<<"Autentificare reusita\n";
+        std::this_thread::sleep_for(std::chrono::seconds(1));
+        return;
+    }
 
     void afiseazaJocuriLibrarie() override {
         librarie.afiseazaJocuriSumar();
@@ -34,14 +66,24 @@ public:
 
     //metode specifice
     void adaugaSuma() {
+        static int contor = 0;
+        contor++;
         double suma;
         std::cout<<"Cati bani doriti sa adaugati in cont? ";
         std::cin>>suma;
-        bani += suma;
+        suma = static_cast<double>(suma);
         std::cout<<"Se incarca...\n";
         //timer for 1 second
         std::this_thread::sleep_for(std::chrono::seconds(1));
-        std::cout<<"Suma a fost adaugata cu succes!\n";
+        if (contor < 5) {
+            bani += suma;
+            std::cout<<"Suma a fost adaugata cu succes!\n";
+        }
+        else {
+            std::cout<<"Suma a fost adaugata cu succes! Multumim pentru sustinere! "<<
+            "Ati primit un bonus de 10% in fonduri pentru suportul de-a lungul timpului!\n";
+            bani += (suma + suma/10);
+        }
     }
 
     void cumparaJoc() {
@@ -85,3 +127,5 @@ public:
     }
     
 };
+
+#endif // UTILIZATOR_CPP

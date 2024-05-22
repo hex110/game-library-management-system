@@ -1,5 +1,8 @@
+#ifndef LIBRARIE_CPP
+#define LIBRARIE_CPP
+
 #include <bits/stdc++.h>
-#include "joc.h"
+#include "../src/joc.cpp"
 
 class Librarie{ 
 private:
@@ -39,10 +42,6 @@ public:
         return *this;
     }
 
-    //operator <<
-
-    //operator >>
-
     //getters
     int getNumarJocuri() const {
         return numarJocuri;
@@ -61,8 +60,8 @@ public:
     }
 
     //metode specifice clasei librarie
-    //adauga un joc nou in librarie
 
+    //adauga un joc nou in librarie
     void adaugaJoc(const Joc& joc) {
         jocuri.push_back(joc);
         numarJocuri++;
@@ -143,3 +142,5 @@ int test2() {
     librarie.afiseazaJocuriSumar();
     return 0;
 }
+
+#endif // LIBRARIE_CPP
